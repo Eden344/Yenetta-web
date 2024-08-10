@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
+            $table->string('email')->unique();
             $table->integer('phonenumber');
             $table->string('gender');
             $table->integer('age');
@@ -33,3 +34,19 @@ return new class extends Migration
         Schema::dropIfExists('information');
     }
 };
+class AddEmailToInformationTable extends Migration
+{
+    public function up()
+    {
+        Schema::table('information', function (Blueprint $table) {
+            $table->string('email')->unique(); // Add the email column
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('information', function (Blueprint $table) {
+            $table->dropColumn('email'); // Remove the email column if rolled back
+        });
+    }
+}

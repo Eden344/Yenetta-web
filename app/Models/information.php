@@ -13,9 +13,11 @@ class information extends Model
         'firstname',
         'middlename',
         'lastname',
+        'email',
         'phonenumber',
         'gender',
         'age',
         'school',
-        'address' ];
+        'address'
+    ];
 }
