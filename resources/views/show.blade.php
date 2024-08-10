@@ -10,7 +10,7 @@
         </div>
         <div>
             <div>
-                <a herf="{{route('product.create')}}"> create a product</a>
+                <a href="{{route('product.create')}}"> create a product</a>
             </div>
             <table border="1">
                 <tr>
