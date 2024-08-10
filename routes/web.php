@@ -4,8 +4,16 @@ use App\Http\Controllers\studentController;
 use Illuminate\Support\Facades\Route;
 Route::resource('students', studentController::class);
 
+<<<<<<< HEAD
 //Route::get('/', [studentController::class, ""]) ;
 //Route::get('/register', [studentController::class, "index"]) ;
+=======
+Route::get('/', function(){
+    return view('homepage');
+}); // Fixed routing.
+Route::get('/register', [studentController::class, "index"]) ;
+Route::post('/validation', [studentController::class, "studentValidation"]) ;
+>>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920
 
 
 

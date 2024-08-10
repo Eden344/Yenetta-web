@@ -21,5 +21,5 @@
     {{$slot}}
 
     <footer>
-        <p>&copy; <span id="date"></span> Yenetta Code. All rights reserved.</p>
+        <p>&copy; <span id="date">{{date('Y')}}</span> Yenetta Code. All rights reserved.</p>
     </footer>

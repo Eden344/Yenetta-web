@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\information;  // Correctly import the model
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class studentController extends Controller
 {
@@ -21,6 +22,7 @@ class studentController extends Controller
         return view('students.create');
     }
 
+<<<<<<< HEAD
     /**
      * Store a newly created resource in storage.
      */
@@ -96,4 +98,22 @@ class studentController extends Controller
                          ->with('success', 'Student deleted successfully.');
     }
     
+=======
+    public function studentValidation(Request $request) {
+        $incoming_fields = $request->validate([
+            'firstname' => ['required', 'string', 'min:2', 'alpha'],
+            'middlename' => ['required', 'string', 'min:2', 'alpha'],
+            'lastname' => ['required', 'string', 'min:2', 'alpha'],
+            'email' => [Rule::unique('information', 'email'), 'email', 'required'],
+            'age' => 'max:130',
+            'phonenumber1' => ['required', 'regex:/^09[0-9]{8}$/'],
+            'phonenumber2' => ['required', 'regex:/^09[0-9]{8}$/'],
+            'gender' => 'required',
+            'school' => 'required',
+            'address' => 'required'
+        ]);
+        information::create($incoming_fields);
+        return redirect('/')->with('register_success', 'You have successfully registered a new student.');
+    }
+>>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920
 }

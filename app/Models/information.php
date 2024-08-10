@@ -14,6 +14,7 @@ class information extends Model
         'middlename',
         'lastname',
         'email',
+<<<<<<< HEAD
         'phonenumber',
         'gender',
         'age',
@@ -21,3 +22,12 @@ class information extends Model
         'address'
     ];
 }
+=======
+        'phonenumber1',
+        'phonenumber2',
+        'gender',
+        'age',
+        'school',
+        'address'];
+}
+>>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920
