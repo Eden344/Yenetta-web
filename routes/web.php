@@ -1,19 +1,13 @@
 <?php
 
-use App\Http\Controllers\studentController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\studentController;
+use App\Http\Controllers\ScheduleController;
+   
 Route::resource('students', studentController::class);
 
-<<<<<<< HEAD
-//Route::get('/', [studentController::class, ""]) ;
-//Route::get('/register', [studentController::class, "index"]) ;
-=======
-Route::get('/', function(){
-    return view('homepage');
-}); // Fixed routing.
-Route::get('/register', [studentController::class, "index"]) ;
-Route::post('/validation', [studentController::class, "studentValidation"]) ;
->>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920
+
 
 
 
@@ -39,3 +33,6 @@ Route::patch('/students/{id}', [studentController::class, 'update'])->name('stud
 // Delete a specific student from the database
 Route::delete('/students/{id}', [studentController::class, 'destroy'])->name('students.destroy');
 
+Route::get('/students/schedules', [StudentController::class, 'scheduleIndex'])->name('students.schedule_index');
+Route::resource('/schedules', ScheduleController::class);
+Route::get('/schedules/{id}/students', [ScheduleController::class, 'showStudentsBySchedule'])->name('schedules.students'); 

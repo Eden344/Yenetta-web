@@ -67,7 +67,18 @@
                 <label for="address">Address</label>
                 <input type="text" name="address" class="form-control" value="{{ $student->address }}">
             </div>
-
+            
+            <div class="form-group">
+                <label for="schedule_id">Select Schedule:</label>
+                <select name="schedule_id" id="schedule_id" class="form-control" required>
+                    <option value="">Select Schedule</option>
+                    @foreach($schedules as $schedule)
+                        <option value="{{ $schedule->id }}" {{ $student->schedule_id == $schedule->id ? 'selected' : '' }}>
+                            {{ $schedule->name }} ({{ $schedule->time_in }} - {{ $schedule->time_out }})
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

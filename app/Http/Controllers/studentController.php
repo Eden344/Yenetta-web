@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\information;  // Correctly import the model
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\Student;
+
 
 class studentController extends Controller
 {
@@ -19,10 +22,10 @@ class studentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $schedules = Schedule::all();
+        return view('students.create', compact('schedules'));
     }
 
-<<<<<<< HEAD
     /**
      * Store a newly created resource in storage.
      */
@@ -30,6 +33,7 @@ class studentController extends Controller
     {
         // dd($request->all());
        $data= $request->validate([
+            
             'firstname' => 'required',
             'middlename' => 'nullable',
             'lastname' => 'required',
@@ -39,6 +43,8 @@ class studentController extends Controller
             'age' => 'required|integer',
             'school' => 'required',
             'address' => 'required',
+            'schedule_id' => 'required|exists:schedules,id',
+
         ]);
     
         $newproduct =information::create($request->all());
@@ -59,10 +65,13 @@ class studentController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {
-        $student = information::findOrFail($id); // Fetch student by ID
-        return view('students.edit', compact('student'));
-    }
+{
+    $student = Information::findOrFail($id);
+    $schedules = Schedule::all(); // Get all schedules
+
+    return view('students.edit', compact('student', 'schedules'));
+}
+
     
     
     
@@ -98,22 +107,22 @@ class studentController extends Controller
                          ->with('success', 'Student deleted successfully.');
     }
     
-=======
-    public function studentValidation(Request $request) {
-        $incoming_fields = $request->validate([
-            'firstname' => ['required', 'string', 'min:2', 'alpha'],
-            'middlename' => ['required', 'string', 'min:2', 'alpha'],
-            'lastname' => ['required', 'string', 'min:2', 'alpha'],
-            'email' => [Rule::unique('information', 'email'), 'email', 'required'],
-            'age' => 'max:130',
-            'phonenumber1' => ['required', 'regex:/^09[0-9]{8}$/'],
-            'phonenumber2' => ['required', 'regex:/^09[0-9]{8}$/'],
-            'gender' => 'required',
-            'school' => 'required',
-            'address' => 'required'
-        ]);
-        information::create($incoming_fields);
-        return redirect('/')->with('register_success', 'You have successfully registered a new student.');
+    public function scheduleIndex()
+    {
+        // Logic to fetch and display schedules related to students
+        $students = Student::with('schedule')->get();
+        return view('students.schedule_index', compact('students'));
     }
->>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920
+    
+
+    public function showStudentsBySchedule($scheduleId)
+{
+    // Retrieve the schedule with the related students
+    $schedule = Schedule::with('students')->findOrFail($scheduleId);
+
+    // Pass the schedule and its students to the view
+    return view('schedules.schedule_students', ['schedule' => $schedule]);
+}
+
+    
 }

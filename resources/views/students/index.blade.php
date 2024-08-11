@@ -5,7 +5,10 @@
 @section('content')
     <div class="container">
         <h1>Student List</h1>
+
         <a href="{{ route('students.create') }}" class="btn btn-primary">Add New Student</a>
+        <a href="{{ url('/schedules') }}">schedule</a>
+        <a href="{{ route('students.create') }}" class="btn btn-primary">Attendance </a>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success mt-3">
@@ -25,7 +28,8 @@
                     <th>Age</th>
                     <th>School</th>
                     <th>Address</th>
-                    <th>Actions</th>
+                   
+                    <th>Schedule</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +44,9 @@
                         <td>{{ $student->age }}</td>
                         <td>{{ $student->school }}</td>
                         <td>{{ $student->address }}</td>
+        
+                        <td>{{ $student->schedule->name ?? 'No Schedule' }} ({{ $student->schedule->time_in ?? '' }} - {{ $student->schedule->time_out ?? '' }})</td>
+               
                         <td>
                             <a href="{{ route('students.show', $student->id) }}" class="btn btn-info">View</a>
                             <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit</a>

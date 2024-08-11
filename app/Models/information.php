@@ -14,20 +14,17 @@ class information extends Model
         'middlename',
         'lastname',
         'email',
-<<<<<<< HEAD
         'phonenumber',
         'gender',
         'age',
         'school',
-        'address'
+        'address',
+        
+        'schedule_id',
     ];
+
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'schedule_id');
+    }
 }
-=======
-        'phonenumber1',
-        'phonenumber2',
-        'gender',
-        'age',
-        'school',
-        'address'];
-}
->>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920

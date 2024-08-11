@@ -16,16 +16,9 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
-<<<<<<< HEAD
             $table->string('email')->unique();
             $table->integer('phonenumber');
             $table->string('gender');
-=======
-            $table->string('email'); // Added an email column.
-            $table->bigInteger('phonenumber1');
-            $table->bigInteger('phonenumber2'); // Added an extra phone number column
-            $table->string('gender',10);
->>>>>>> c09d9b36e4814b3e39ad1a99d369039efef0e920
             $table->integer('age');
             $table->string('school');
             $table->text('address');
