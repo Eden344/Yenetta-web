@@ -8,16 +8,17 @@
 </head>
 <body>
     <header>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+        <nav>
+            <a href="/students">View Student</a>
+            <a href="/students/create">Add a new Student</a>
+            <a href="/logout">Logout</a>
+        </nav>
     </header>
     <main>
-        <p>Yenettaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        Student Data goes here...
     </main>
-    <footer>
-        &copy; {{date('Y')}} Yenetta Code. All rights reserved. 
-    </footer>
+    <footer></footer>
 
-
+    
 </body>
 </html>
