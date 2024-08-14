@@ -22,9 +22,16 @@ class information extends Model
         
         'schedule_id',
     ];
-
+      
     public function schedule()
     {
         return $this->belongsTo(Schedule::class, 'schedule_id');
+    }
+
+     
+    protected $table = 'information';
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'student_id');
     }
 }
