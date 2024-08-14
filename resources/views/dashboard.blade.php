@@ -9,8 +9,10 @@
 <body>
     <header>
         <nav>
-            <a href="/students">View Student</a>
-            <a href="/students/create">Add a new Student</a>
+            <a href="/">Dashboard</a>
+            <a href="/students">Students</a>
+            <a href="/students/schedules">Schedule</a>
+            <a href="/students/schedules">Attendance</a>
             <a href="/logout">Logout</a>
         </nav>
     </header>
