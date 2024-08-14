@@ -3,22 +3,37 @@
 @section('content')
 <div class="container">
     <h2>Edit Schedule</h2>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <form action="{{ route('schedules.update', $schedule->id) }}" method="POST">
         @csrf
         @method('PUT')
+    
         <div class="form-group">
             <label for="name">Schedule Name:</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $schedule->name }}" required>
+            <input type="text" id="name" name="name" value="{{ old('name', $schedule->name) }}" required>
         </div>
+    
         <div class="form-group">
             <label for="time_in">Time In:</label>
-            <input type="time" class="form-control" id="time_in" name="time_in" value="{{ $schedule->time_in }}" required>
+            <input type="time" id="time_in" name="time_in" value="{{ old('time_in', $schedule->time_in) }}" required>
         </div>
+    
         <div class="form-group">
             <label for="time_out">Time Out:</label>
-            <input type="time" class="form-control" id="time_out" name="time_out" value="{{ $schedule->time_out }}" required>
+            <input type="time" id="time_out" name="time_out" value="{{ old('time_out', $schedule->time_out) }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Update Schedule</button>
+    
+        <button type="submit">Update Schedule</button>
     </form>
 </div>
 @endsection

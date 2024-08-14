@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\information;  // Correctly import the model
+
+use App\Models\Student;
 use App\Models\Schedule;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\Student;
+use App\Models\information;  // Correctly import the model
 
 
 class studentController extends Controller
@@ -123,6 +125,42 @@ class studentController extends Controller
     // Pass the schedule and its students to the view
     return view('schedules.schedule_students', ['schedule' => $schedule]);
 }
+     
 
+public function showAttendanceForm()
+    {
+        $students = Information::all();
+        return view('students.mark_attendance', compact('students'));
+    }
+
+    public function markAttendance(Request $request)
+    {   dd($request->all());
+        $request->validate([
+            'date' => 'required|date',
+            'attendance' => 'required|array',
+            'attendance.*' => 'required|boolean',
+        ]);
+
+        foreach ($request->attendance as $studentId => $present) {
+            Attendance::updateOrCreate(
+                [
+                    'student_id' => $studentId,
+                    'date' => $request->date
+                ],
+                [
+                    'present' => $present,
+                    'schedule_id' => $request->schedule_id // Ensure this is passed in the request
+                ]
+            );
+        }
+
+        return redirect()->route('students.attendance_report')->with('success', 'Attendance marked successfully.');
+    }
+
+    public function attendanceReport()
+    {
+        $attendances = Attendance::with('student')->get();
+        return view('students.attendance_report', compact('attendances'));
+    }
     
 }

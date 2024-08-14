@@ -41,7 +41,7 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'time_in' => 'required|date_format:H:i',
             'time_out' => 'required|date_format:H:i',
         ]);

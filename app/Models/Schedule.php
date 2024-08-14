@@ -15,4 +15,12 @@ class Schedule extends Model
     {
         return $this->hasMany(Information::class, 'schedule_id');
     }
+
+    protected $table = 'schedules';
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'schedule_id');
+    }
+    
 }

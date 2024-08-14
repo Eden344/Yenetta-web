@@ -8,7 +8,7 @@
 
         <a href="{{ route('students.create') }}" class="btn btn-primary">Add New Student</a>
         <a href="{{ url('/schedules') }}">schedule</a>
-        <a href="{{ route('students.create') }}" class="btn btn-primary">Attendance </a>
+        <a href="{{ url('/attendance/mark') }}">Attendance </a>
 
         @if ($message = Session::get('success'))
             <div class="alert alert-success mt-3">

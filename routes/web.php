@@ -4,6 +4,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\studentController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\AttendanceController;
+
    
 Route::resource('students', studentController::class);
 
@@ -36,3 +38,14 @@ Route::delete('/students/{id}', [studentController::class, 'destroy'])->name('st
 Route::get('/students/schedules', [StudentController::class, 'scheduleIndex'])->name('students.schedule_index');
 Route::resource('/schedules', ScheduleController::class);
 Route::get('/schedules/{id}/students', [ScheduleController::class, 'showStudentsBySchedule'])->name('schedules.students'); 
+
+Route::get('/attendance/mark', [AttendanceController::class, 'markAttendanceForm'])->name('attendance.mark_form');
+Route::post('/attendance/mark', [AttendanceController::class, 'markAttendance'])->name('attendance.mark');
+Route::get('/attendance/report', [AttendanceController::class, 'attendanceReport'])->name('attendance.report');
+
+
+Route::get('/test', function () {
+    return 'Test route is working!';
+});
+
+Route::post('/attendance/submit', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
