@@ -74,10 +74,6 @@ class studentController extends Controller
     return view('students.edit', compact('student', 'schedules'));
 }
 
-    
-    
-    
-
     /**
      * Update the specified resource in storage.
      */
