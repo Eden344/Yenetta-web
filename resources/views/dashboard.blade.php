@@ -11,13 +11,18 @@
         <nav>
             <a href="/">Dashboard</a>
             <a href="/students">Students</a>
-            <a href="/students/schedules">Schedule</a>
-            <a href="/students/schedules">Attendance</a>
+            <a href="/schedules">Schedule</a>
+            <a href="/attendance/mark">Attendance</a>
             <a href="/logout">Logout</a>
         </nav>
     </header>
     <main>
-        Student Data goes here...
+       <div>
+        Total students: {{$student_count}}
+        </div>
+        <div>
+            Total Schedules: {{$schedule_count}}
+        </div>
     </main>
     <footer></footer>
 

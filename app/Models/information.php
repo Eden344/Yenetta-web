@@ -19,7 +19,7 @@ class information extends Model
         'age',
         'school',
         'address',
-        
+        'fee',
         'schedule_id',
     ];
       

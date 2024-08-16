@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Student;
 use App\Models\Schedule;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Models\information;  // Correctly import the model
 
 
@@ -46,10 +43,10 @@ class studentController extends Controller
             'school' => 'required',
             'address' => 'required',
             'schedule_id' => 'required|exists:schedules,id',
-
+            'fee' => 'required'
         ]);
     
-        $newproduct =information::create($request->all());
+        $newproduct =information::create($data);
         return redirect()->route('students.index')
                          ->with('success', 'Student created successfully.');
     }
@@ -108,7 +105,7 @@ class studentController extends Controller
     public function scheduleIndex()
     {
         // Logic to fetch and display schedules related to students
-        $students = Student::with('schedule')->get();
+        $students = information::with('schedule')->get();
         return view('students.schedule_index', compact('students'));
     }
     
@@ -123,7 +120,7 @@ class studentController extends Controller
 }
      
 
-public function showAttendanceForm()
+    public function showAttendanceForm()
     {
         $students = Information::all();
         return view('students.mark_attendance', compact('students'));

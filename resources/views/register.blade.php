@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/register" method="POST">
+    <form action="/register-validation" method="POST">
         @csrf
 
         <div class="form-group">

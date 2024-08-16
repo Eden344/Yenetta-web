@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('information')->onDelete('cascade');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('schedule_id');
             $table->date('date');
             $table->boolean('present')->default(false);
+            $table->time('time_in')->nullable();
+            $table->time('time_out')->nullable();
             $table->timestamps();
+            $table->foreign('student_id')->references('id')->on('information')->onDelete('cascade');
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
         });
     }
 

@@ -66,6 +66,11 @@
                 <label for="address">Address</label>
                 <input type="text" name="address" class="form-control" value="{{ old('address') }}">
             </div>
+
+            <div class="form-group">
+                <label for="fee">Fee</label>
+                <input type="number" name="fee" class="form-control" value="{{ old('fee') }}">
+            </div>
            
             <div class="form-group">
                 <label for="schedule_id">Select Schedule:</label>

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('gender');
             $table->integer('age');
             $table->string('school');
+            $table->double('fee');
             $table->text('address');
             $table->timestamps();
         });

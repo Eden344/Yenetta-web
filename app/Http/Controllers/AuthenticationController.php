@@ -1,12 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Student;
+use App\Models\Schedule;
+use App\Models\Attendance;
+use App\Models\information;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthenticationController extends Controller
-{
+{   
+    public function showCorrectPage(){
+        if (auth()->check()){
+            $student_count = information::count();
+            $schedule_count = Schedule::count();
+            return view('dashboard', [
+                'student_count' => $student_count ,
+                'schedule_count' => $schedule_count
+                
+        ]);
+        }
+        return view('homepage');
+    }
     public function displayLoginForm() {
         return view('login');
     }

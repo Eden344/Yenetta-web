@@ -5,10 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\studentController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AuthenticationController;
 
    
 Route::resource('students', studentController::class);
 
+Route::get('/',[AuthenticationController::class, 'showCorrectPage']);
+Route::get('/login', [AuthenticationController::class, 'displayLoginForm']);
+Route::get('/register', [AuthenticationController::class, 'displayRegisterForm']);
+Route::post('/login-validation', [AuthenticationController::class, 'login']);
+Route::post('/register-validation', [AuthenticationController::class, 'register']);
 
 
 
@@ -35,7 +41,6 @@ Route::patch('/students/{id}', [studentController::class, 'update'])->name('stud
 // Delete a specific student from the database
 Route::delete('/students/{id}', [studentController::class, 'destroy'])->name('students.destroy');
 
-Route::get('/students/schedules', [StudentController::class, 'scheduleIndex'])->name('students.schedule_index');
 Route::resource('/schedules', ScheduleController::class);
 Route::get('/schedules/{id}/students', [ScheduleController::class, 'showStudentsBySchedule'])->name('schedules.students'); 
 
@@ -43,9 +48,5 @@ Route::get('/attendance/mark', [AttendanceController::class, 'markAttendanceForm
 Route::post('/attendance/mark', [AttendanceController::class, 'markAttendance'])->name('attendance.mark');
 Route::get('/attendance/report', [AttendanceController::class, 'attendanceReport'])->name('attendance.report');
 
-
-Route::get('/test', function () {
-    return 'Test route is working!';
-});
 
 Route::post('/attendance/submit', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
