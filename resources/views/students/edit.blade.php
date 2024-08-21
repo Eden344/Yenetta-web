@@ -59,6 +59,11 @@
             </div>
 
             <div class="form-group">
+                <label for="fee">Fee</label>
+                <input type="number" name="fee" class="form-control" value="{{ $student->fee }}">
+            </div>
+
+            <div class="form-group">
                 <label for="school">School</label>
                 <input type="text" name="school" class="form-control" value="{{ $student->school }}">
             </div>

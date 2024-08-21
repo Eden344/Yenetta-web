@@ -12,7 +12,7 @@
             <a href="/">Dashboard</a>
             <a href="/students">Students</a>
             <a href="/schedules">Schedule</a>
-            <a href="/attendance/mark">Attendance</a>
+            <a href="{{ route('attendance.mark_form') }} ">Attendance</a>
             <a href="/logout">Logout</a>
         </nav>
     </header>
@@ -23,8 +23,38 @@
         <div>
             Total Schedules: {{$schedule_count}}
         </div>
+        <div>
+            Total Money Paid: {{$total_cash}}
+        </div>
+        
+        <div>
+            Number of students who haven't paid: {{$not_paid}}
+        </div>
+        <div>
+            Paid Students:
+            <ul>
+                @foreach ($paid_students as $paid)
+                <li>{{$paid}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @if(!empty($unpaid_students))
+        <div>
+            Unpaid Students
+            <ul>
+                @foreach($unpaid_students as $unpaid)
+                <li>{{$unpaid}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @else
+        <div>
+            <p>All students have paid.</p>
+        </div>
+        @endif
+    
     </main>
-    <footer></footer>
+    <footer>&copy; {{date('Y')}} Yenetta Code. All Rights Reserved.</footer>
 
     
 </body>

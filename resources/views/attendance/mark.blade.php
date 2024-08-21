@@ -5,7 +5,24 @@
 </head>
 <body>
     <h1>Mark Attendance</h1>
-
+    <form action="/show-filtered-attendance" method="GET">
+        @csrf
+        <select name="schedule_id" id="schedule_id">
+        @if(isset($schedule_id))
+            <option value="{{$schedule_id}}">{{$current_schedule->name}}</option>
+        @endif
+        @foreach ($schedules as $schedule)
+            @if(isset($schedule_id))
+                @unless ($schedule_id == $schedule->id)    
+                    <option value="{{$schedule->id}}">{{$schedule->name}}</option>
+                @endunless
+            @else
+                <option value="{{$schedule->id}}">{{$schedule->name}}</option>
+            @endif     
+        @endforeach
+        </select>
+        <button type="submit">Filter</button>
+    </form>
     <form action="{{ route('attendance.mark') }}" method="POST">
         @csrf
         <table>

@@ -1,24 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\Student;
 use App\Models\Schedule;
 use App\Models\Attendance;
 use App\Models\information;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticationController extends Controller
 {   
     public function showCorrectPage(){
-        if (auth()->check()){
+        if (Auth::check()){
             $student_count = information::count();
             $schedule_count = Schedule::count();
+            $total_data = DB::table('information')->select('firstname', 'lastname', 'fee')->get()->toArray();
+            $unpaid_students_count = 0;
+            $paid_students_count = 0;
+            $list_of_unpaid_students = [];
+            $list_of_paid_students = [];
+            $cash = 0;
+            foreach ($total_data as $data){
+                $data = (array)$data;
+                if($data['fee'] == 0){
+                    array_push($list_of_unpaid_students, $data['firstname']." " . $data['lastname']);
+                    $unpaid_students_count += 1;
+                } else {
+                    array_push($list_of_paid_students, $data['firstname']. " " . $data['lastname']);
+                    $paid_students_count++;
+                }
+                $cash+=$data['fee'];
+            }
             return view('dashboard', [
                 'student_count' => $student_count ,
-                'schedule_count' => $schedule_count
-                
-        ]);
+                'schedule_count' => $schedule_count,
+                'total_cash' => $cash,
+                'not_paid' => $unpaid_students_count,
+                'unpaid_students' => $list_of_unpaid_students,
+                'paid_students' => $list_of_paid_students
+            ]);
         }
         return view('homepage');
     }
@@ -35,7 +57,7 @@ class AuthenticationController extends Controller
             'password' => 'required'
             ]);
 
-        if(auth()->attempt([
+        if(Auth::attempt([
            'name' => $incoming_fields['username'],
            'password' => $incoming_fields['password']
         ])){
@@ -47,7 +69,7 @@ class AuthenticationController extends Controller
 
     }
     public function logout() {
-        auth()->logout();
+        Auth::logout();
         return redirect('/');
     }
 

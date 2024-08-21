@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Schedule;
 use App\Models\Attendance;
 use App\Models\Information;
+use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
@@ -12,12 +13,12 @@ class AttendanceController extends Controller
     public function showAttendanceForm()
     {
         $students = Information::all(['id', 'firstname', 'middlename', 'lastname']); // Fetch necessary fields
-        return view('attendance.mark', compact('students'));
+        $schedules = Schedule::all(['name', 'time_in', 'time_out']); // Fetch necessary fields
+        return view('attendance.mark_form', compact('students', 'schedules'));
     }
-    
 
 
-    // Store attendance datapublic function markAttendance(Request $request)
+    // Store attendance data
     public function markAttendance(Request $request)
 {
     $attendanceData = $request->input('attendance', []);
@@ -40,6 +41,7 @@ class AttendanceController extends Controller
             $attendance->time_in = null;
             $attendance->time_out = null;
         }
+        $attendance->schedule_id = 1;
 
         // Save the attendance record
         $attendance->save();
@@ -102,11 +104,19 @@ class AttendanceController extends Controller
     return redirect()->back()->with('success', 'Attendance submitted successfully.');
 }
     
+public function filtered_attendance(Request $request){ 
+    $schedule_id = $request->input('schedule_id');
+    $students = Information::where('schedule_id','=', $schedule_id)->get();
+    $schedules = Schedule::all();
+    $current_schedule = Schedule::where('id','=',$schedule_id)->first();
+    return view('attendance.mark', compact('students', 'schedules','schedule_id','current_schedule'));
+}
 
-public function markAttendanceForm()
-{
+public function markAttendanceForm() {   
     $students = Information::all();
-    return view('attendance.mark', compact('students'));
+    $default_schedule_id = Schedule::count();
+    $schedules = Schedule::all(['id','name', 'time_in', 'time_out']); // Fetch necessary fields
+    return view('attendance.mark', compact('students', 'schedules', 'default_schedule_id'));
 }
     
 }

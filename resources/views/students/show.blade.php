@@ -16,7 +16,7 @@
                 <p><strong>Gender:</strong> {{ ucfirst($student->gender) }}</p>
                 <p><strong>Age:</strong> {{ $student->age }}</p>
                 <p><strong>School:</strong> {{ $student->school }}</p>
-                <p><strong>Address:</strong> {{ $student->address }}</p>
+                <p><strong>Fee</strong> {{ $student->fee }}</p>
 
                 <a href="{{ route('students.index') }}" class="btn btn-secondary">Back</a>
                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit</a>

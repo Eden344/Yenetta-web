@@ -15,9 +15,7 @@ Route::get('/login', [AuthenticationController::class, 'displayLoginForm']);
 Route::get('/register', [AuthenticationController::class, 'displayRegisterForm']);
 Route::post('/login-validation', [AuthenticationController::class, 'login']);
 Route::post('/register-validation', [AuthenticationController::class, 'register']);
-
-
-
+Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 // Display a list of students
 Route::get('/students', [studentController::class, 'index'])->name('students.index');
@@ -45,6 +43,7 @@ Route::resource('/schedules', ScheduleController::class);
 Route::get('/schedules/{id}/students', [ScheduleController::class, 'showStudentsBySchedule'])->name('schedules.students'); 
 
 Route::get('/attendance/mark', [AttendanceController::class, 'markAttendanceForm'])->name('attendance.mark_form');
+Route::get('/show-filtered-attendance', [AttendanceController::class, 'filtered_attendance']);
 Route::post('/attendance/mark', [AttendanceController::class, 'markAttendance'])->name('attendance.mark');
 Route::get('/attendance/report', [AttendanceController::class, 'attendanceReport'])->name('attendance.report');
 
