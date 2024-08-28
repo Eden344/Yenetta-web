@@ -20,6 +20,8 @@ Route::get('/logout', [AuthenticationController::class, 'logout']);
 // Display a list of students
 Route::get('/students', [studentController::class, 'index'])->name('students.index');
 
+// Show the list of unpaid students
+Route::get('/unpaid_students', [studentController::class, 'unpaid_students'])->name('unpaid_students');
 // Show the form for creating a new student
 Route::get('/students/create', [studentController::class, 'create'])->name('students.create');
 

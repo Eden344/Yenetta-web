@@ -19,13 +19,11 @@ class AuthenticationController extends Controller
             $total_data = DB::table('information')->select('firstname', 'lastname', 'fee')->get()->toArray();
             $unpaid_students_count = 0;
             $paid_students_count = 0;
-            $list_of_unpaid_students = [];
             $list_of_paid_students = [];
             $cash = 0;
             foreach ($total_data as $data){
                 $data = (array)$data;
                 if($data['fee'] == 0){
-                    array_push($list_of_unpaid_students, $data['firstname']." " . $data['lastname']);
                     $unpaid_students_count += 1;
                 } else {
                     array_push($list_of_paid_students, $data['firstname']. " " . $data['lastname']);
@@ -38,7 +36,6 @@ class AuthenticationController extends Controller
                 'schedule_count' => $schedule_count,
                 'total_cash' => $cash,
                 'not_paid' => $unpaid_students_count,
-                'unpaid_students' => $list_of_unpaid_students,
                 'paid_students' => $list_of_paid_students
             ]);
         }

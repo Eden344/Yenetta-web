@@ -22,7 +22,7 @@
                 <p><strong>Time Out:</strong> {{ $schedule->time_out }}</p>
             </div>
         </div>
-
+        <div>Schedule Count: {{$schedule_count}}</div>
         <!-- Display List of Students in This Schedule -->
         <h3>Students Enrolled in This Schedule</h3>
         <table class="table table-striped">
@@ -44,7 +44,7 @@
                         <td>{{ $student->middlename }}</td>
                         <td>{{ $student->lastname }}</td>
                         <td>{{ $student->email }}</td>
-                        <td>{{ $student->phonenumber }}</td>
+                        <td>{{ $student->phonenumber1 }}</td>
                         <td>{{ $student->gender }}</td>
                         <td>{{ $student->age }}</td>
                     </tr>

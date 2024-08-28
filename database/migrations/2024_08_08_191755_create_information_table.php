@@ -16,12 +16,16 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('middlename');
             $table->string('lastname');
+            $table->string('parent_first_name');
+            $table->string('parent_last_name');
+            $table->string('parent_email');
             $table->string('email')->unique();
-            $table->integer('phonenumber');
+            $table->integer('phonenumber1')->nullable();
+            $table->integer('phonenumber2')->nullable();
             $table->string('gender');
             $table->integer('age');
             $table->string('school');
-            $table->double('fee');
+            $table->double('fee')->nullable()->default(0);
             $table->text('address');
             $table->timestamps();
         });

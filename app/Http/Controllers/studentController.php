@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Schedule;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
@@ -36,17 +38,21 @@ class studentController extends Controller
             'firstname' => 'required',
             'middlename' => 'nullable',
             'lastname' => 'required',
-            'email' => 'required|email|unique:information',
-            'phonenumber' => 'required',
+            'parent_first_name' => 'required',
+            'parent_last_name' => 'required',
+            'parent_email' => 'required|email',
+            'email' => 'email|unique:information|nullable',
+            'phonenumber1' => 'required',
+            'phonenumber2' => 'required',
             'gender' => 'required',
             'age' => 'required|integer',
             'school' => 'required',
             'address' => 'required',
             'schedule_id' => 'required|exists:schedules,id',
-            'fee' => 'required'
+            'fee' => 'nullable'
         ]);
     
-        $newproduct =information::create($data);
+        $newproduct = information::create($data);
         return redirect()->route('students.index')
                          ->with('success', 'Student created successfully.');
     }
@@ -57,6 +63,10 @@ class studentController extends Controller
     public function show(information $student)
     {
         return view('students.show', compact('student'));
+    }
+    public function unpaid_students(information $students) {
+        $students = information::all();
+        return view('students.unpaid_students', compact('students'));
     }
     
 

@@ -63,6 +63,7 @@ class ScheduleController extends Controller
     public function showStudentsBySchedule($id)
     {
         $schedule = Schedule::with('students')->findOrFail($id);
-        return view('schedules.show_students', compact('schedule'));
+        $schedule_count = Schedule::with('students')->findOrFail($id)->count();
+        return view('schedules.show_students', compact('schedule','schedule_count'));
     }
 }

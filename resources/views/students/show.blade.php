@@ -12,11 +12,11 @@
             </div>
             <div class="card-body">
                 <p><strong>Email:</strong> {{ $student->email }}</p>
-                <p><strong>Phone Number:</strong> {{ $student->phonenumber }}</p>
+                <p><strong>Phone Number:</strong> {{ $student->phonenumber1 }}</p>
                 <p><strong>Gender:</strong> {{ ucfirst($student->gender) }}</p>
                 <p><strong>Age:</strong> {{ $student->age }}</p>
                 <p><strong>School:</strong> {{ $student->school }}</p>
-                <p><strong>Fee</strong> {{ $student->fee }}</p>
+                <p><strong>Fee</strong> {{ $student->fee ?? 0}}</p>
 
                 <a href="{{ route('students.index') }}" class="btn btn-secondary">Back</a>
                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit</a>

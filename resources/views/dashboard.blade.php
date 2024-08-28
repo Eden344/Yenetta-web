@@ -38,14 +38,10 @@
                 @endforeach
             </ul>
         </div>
-        @if(!empty($unpaid_students))
+        @if($not_paid != 0)
         <div>
-            Unpaid Students
-            <ul>
-                @foreach($unpaid_students as $unpaid)
-                <li>{{$unpaid}}</li>
-                @endforeach
-            </ul>
+            <a href="/unpaid_students">Unpaid Students</a>
+            <br>
         </div>
         @else
         <div>
@@ -54,7 +50,7 @@
         @endif
     
     </main>
-    <footer>&copy; {{date('Y')}} Yenetta Code. All Rights Reserved.</footer>
+    <footer><br>&copy; {{date('Y')}} Yenetta Code. All Rights Reserved.</footer>
 
     
 </body>
