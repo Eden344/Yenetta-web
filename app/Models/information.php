@@ -10,11 +10,15 @@ class information extends Model
     use HasFactory;
 
     protected $fillable = [
+        'parent_first_name',
+        'parent_last_name',
+        'parent_email',
         'firstname',
         'middlename',
         'lastname',
         'email',
-        'phonenumber',
+        'phonenumber1',
+        'phonenumber2',
         'gender',
         'age',
         'school',

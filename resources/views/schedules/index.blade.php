@@ -1,49 +1,129 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-@section('content')
-<div class="container">
-    <h2>Schedules</h2>
-    <a href="{{ route('schedules.create') }}" class="btn btn-primary">Create Schedule</a>
-    <table class="table table-bordered mt-3">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Time In</th>
-                <th>Time Out</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        @if($schedules->isEmpty())
-    <p>No schedules available.</p>
-@else
-    <ul>
-        @foreach($schedules as $schedule)
-            <li>
-                <a href="{{ route('schedules.students', $schedule->id) }}">
-                    {{ $schedule->name }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-@endif
-        <tbody>
-            @foreach($schedules as $schedule)
-            <tr>
-                <td>{{ $schedule->name }}</td>
-                <td>{{ $schedule->time_in }}</td>
-                <td>{{ $schedule->time_out }}</td>
-                <td>
-                    <a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                    <a href="{{ route('schedules.students', $schedule->id) }}" class="btn btn-info">View Students</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@endsection
+<script src="https://cdn.tailwindcss.com"> </script>
+@vite ('resources/css/app.css')
+    @extends('layouts.app')
+
+
+    <style>
+        .sidebar {
+            width: 16rem;
+        }
+        .content {
+            margin-left: 16rem;
+        }
+    </style>
+
+    <title>YENETTA CODDE-SCHEDULES</title>
+</head>
+<body>
+
+    <header class="h-16 bg-dark w-full">
+        <div class="justify ml-4">
+
+            <img src="img/logo.png" alt="Your Image" class="h-16 w-24">
+        </div>
+
+    </header>
+
+    <div class="flex h-screen">
+        <div class="sidebar bg-fossil flex shadow-dark shadow-xl flex-col">
+
+            <ul class="flex flex-col mt-6">
+                <a href="/"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</a></li>
+                 <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
+                <a href="/schedules"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                 <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                <a href="/logout"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+            </ul>
+        </div>
+
+
+    <div class="flex flex-col w-full ml-5 mt-10 mr-0 space-y-5">
+        <div>
+            <h2 class="font bold font-serif text-2xl mb-4 text-dark uppercase">Schedules</h2>
+
+        </div>
+        <div class=" Schedule Detail ml-70 flex  justify-end ">
+            <button class="rounded bg-dark h-8 w-48">
+                <a href="{{ route('schedules.create') }}" class="text-center font-serif text-white">Create Schedule</a>
+            </button>
+
+        </div>
+
+
+        <table class="w-full mt-4">
+            <thead class="bg-gray-50 border-b-2 border-gray-200">
+                <tr class="w-12 p-3">
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Time In</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Time Out</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Actions</th>
+                </tr>
+            </thead>
+            @if($schedules->isEmpty())
+            <span class="p-1 mx-1 text-xs font-medium uppercase tracking-wider text-white bg-parakeet rounded-lg bg-opacity-50 ">
+        <p>No schedules available.</p>
+            </span>
+    @endif
+            <tbody>
+                @foreach($schedules as $schedule)
+                <tr class="bg-white mb-2 h-12">
+                    <td class="p-3 text-sm text-gray-700">{{ $schedule->name }}</td>
+                    <td class="p-3 text-sm text-gray-700">{{ $schedule->time_in }}</td>
+                    <td class="p-3 text-sm text-gray-700">{{ $schedule->time_out }}</td>
+                    <td class="p-3 text-sm text-gray-700">
+
+                        <span class="p-1 mx-1 text-xs font-medium uppercase tracking-wider text-royal bg-cobalt rounded-lg bg-opacity-50 ">
+                        <a href="{{ route('schedules.edit', $schedule->id) }}" class="hover:underline"> <i class="fa-solid fa-pen-to-square"></i>
+
+                        </a>
+                        </span>
+                        <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+
+                            <span class="p-1 mx-1 text-xs font-medium uppercase tracking-wider text-fossil bg-coin rounded-lg bg-opacity-50 ">
+                            <button type="submit" class="hover:underline"><i class="fa-solid fa-trash"></i></button>
+                            </span>
+                        </form>
+
+                        <span class="p-1 mx-1 text-xs font-medium uppercase tracking-wider text-cyber bg-bee rounded-lg bg-opacity-50 ">
+                        <a href="{{ route('schedules.students', $schedule->id) }}" class="hover:underline"><i class="fa-solid fa-eye"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var rows = document.querySelectorAll ('tr');
+      rows.forEach(function(row, index) {
+        if (index % 2 == 0) {
+          row.classList.add('bg-gray-300');
+        }
+      });
+    });
+  </script>
+
+
+</body>
+</html>
+
+
+
+
+
+

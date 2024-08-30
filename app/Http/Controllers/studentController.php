@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Schedule;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
@@ -31,22 +33,27 @@ class studentController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+
        $data= $request->validate([
-            
+
             'firstname' => 'required',
             'middlename' => 'nullable',
             'lastname' => 'required',
-            'email' => 'required|email|unique:information',
-            'phonenumber' => 'required',
+            'parent_first_name' => 'required',
+            'parent_last_name' => 'required',
+            'parent_email' => 'required|email',
+            'email' => 'email|unique:information|nullable',
+            'phonenumber1' => 'required',
+            'phonenumber2' => 'required',
             'gender' => 'required',
             'age' => 'required|integer',
             'school' => 'required',
             'address' => 'required',
             'schedule_id' => 'required|exists:schedules,id',
-            'fee' => 'required'
+            'fee' => 'nullable'
         ]);
-    
-        $newproduct =information::create($data);
+
+        $newproduct = information::create($data);
         return redirect()->route('students.index')
                          ->with('success', 'Student created successfully.');
     }
@@ -58,7 +65,11 @@ class studentController extends Controller
     {
         return view('students.show', compact('student'));
     }
-    
+    public function unpaid_students(information $students) {
+        $students = information::all();
+        return view('students.unpaid_students', compact('students'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -77,20 +88,20 @@ class studentController extends Controller
     public function update(Request $request, $id)
     {
         $student = information::findOrFail($id);
-    
+
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email',
             // other validation rules
         ]);
-    
+
         $student->update($request->all());
-    
+
         return redirect()->route('students.index')
                          ->with('success', 'Student updated successfully.');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -101,14 +112,14 @@ class studentController extends Controller
         return redirect()->route('students.index')
                          ->with('success', 'Student deleted successfully.');
     }
-    
+
     public function scheduleIndex()
     {
         // Logic to fetch and display schedules related to students
         $students = information::with('schedule')->get();
         return view('students.schedule_index', compact('students'));
     }
-    
+
 
     public function showStudentsBySchedule($scheduleId)
 {
@@ -118,7 +129,7 @@ class studentController extends Controller
     // Pass the schedule and its students to the view
     return view('schedules.schedule_students', ['schedule' => $schedule]);
 }
-     
+
 
     public function showAttendanceForm()
     {
@@ -155,5 +166,5 @@ class studentController extends Controller
         $attendances = Attendance::with('student')->get();
         return view('students.attendance_report', compact('attendances'));
     }
-    
+
 }

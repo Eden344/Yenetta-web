@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -23,13 +23,14 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'time_in' => 'required|date_format:H:i',
-            'time_out' => 'required|date_format:H:i',
+            'time_in' => 'required',
+            'time_out' => 'required',
         ]);
 
         Schedule::create($request->all());
 
         return redirect()->route('schedules.index')->with('success', 'Schedule created successfully.');
+
     }
 
     public function edit($id)
@@ -42,8 +43,8 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'time_in' => 'required|date_format:H:i',
-            'time_out' => 'required|date_format:H:i',
+            'time_in' => 'required|date_format:H:i:s',
+            'time_out' => 'required|date_format:H:i:s',
         ]);
 
         $schedule = Schedule::findOrFail($id);
@@ -63,6 +64,7 @@ class ScheduleController extends Controller
     public function showStudentsBySchedule($id)
     {
         $schedule = Schedule::with('students')->findOrFail($id);
-        return view('schedules.show_students', compact('schedule'));
+        $schedule_count = Schedule::with('students')->findOrFail($id)->count();
+        return view('schedules.show_students', compact('schedule','schedule_count'));
     }
 }
