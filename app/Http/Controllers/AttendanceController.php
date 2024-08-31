@@ -47,7 +47,7 @@ class AttendanceController extends Controller
         $attendance->save();
     }
 
-    return redirect()->back()->with('success', 'Attendance marked successfully.');
+    return redirect('/attendance/report')->with('success', 'Attendance marked successfully.');
 }
 
 
@@ -101,7 +101,7 @@ class AttendanceController extends Controller
         }
     }
 
-    return redirect()->back()->with('success', 'Attendance submitted successfully.');
+    return redirect('/attendance/report')->with('success', 'Attendance submitted successfully.');
 }
 
 public function filtered_attendance(Request $request){

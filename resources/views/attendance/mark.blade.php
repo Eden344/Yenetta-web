@@ -19,7 +19,7 @@
 <body class="bg-white">
 
     <header class="h-16 bg-dark w-full">
-        <div class="justify ml-4">
+        <div class="justify-center ml-4">
 
             <img src="/img/logo.png" alt="Your Image" class="h-16 w-24">
         </div>
@@ -44,7 +44,9 @@
                 <h1 class="font bold font-serif text-4xl mb-4 text-dark">Mark Attendance</h1>
             </div>
 
-
+            <form action="" method="get">
+                
+            </form>
             <form action="{{ route('attendance.mark') }}"  method="POST">
                 @csrf
                 <table class="w-full mt-4">
