@@ -42,8 +42,8 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'time_in' => 'required|date_format:H:i',
-            'time_out' => 'required|date_format:H:i',
+            'time_in' => 'required|date_format:H:i:s',
+            'time_out' => 'required|date_format:H:i:s',
         ]);
 
         $schedule = Schedule::findOrFail($id);

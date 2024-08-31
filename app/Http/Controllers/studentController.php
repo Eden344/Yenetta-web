@@ -33,6 +33,7 @@ class studentController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+    
        $data= $request->validate([
             
             'firstname' => 'required',
@@ -51,7 +52,6 @@ class studentController extends Controller
             'schedule_id' => 'required|exists:schedules,id',
             'fee' => 'nullable'
         ]);
-    
         $newproduct = information::create($data);
         return redirect()->route('students.index')
                          ->with('success', 'Student created successfully.');

@@ -41,8 +41,12 @@
             </div>
 
             <div class="form-group">
-                <label for="phonenumber">Phone Number</label>
-                <input type="text" name="phonenumber" class="form-control" value="{{ $student->phonenumber }}">
+                <label for="phonenumber1">Phone Number 1</label>
+                <input type="text" name="phonenumber1" class="form-control" value="{{ $student->phonenumber1 }}">
+            </div>
+            <div class="form-group">
+                <label for="phonenumber2">Phone Number 2</label>
+                <input type="text" name="phonenumber2" class="form-control" value="{{ $student->phonenumber2 }}">
             </div>
 
             <div class="form-group">

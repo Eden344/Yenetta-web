@@ -39,7 +39,7 @@ class AuthenticationController extends Controller
                 'paid_students' => $list_of_paid_students
             ]);
         }
-        return view('homepage');
+        return view('login');
     }
     public function displayLoginForm() {
         return view('login');
