@@ -13,7 +13,8 @@
     @vite ('resources/css/app.css')
     <style>
         .sidebar {
-            width: 16rem;
+            width: 250px;
+
         }
         .content {
             margin-left: 16rem;
@@ -37,15 +38,15 @@
     </header>
 
     <div class="flex h-screen">
-        <div class="sidebar bg-fossil flex shadow-dark shadow-xl flex-col">
+        <div class="sidebar  h-[110vh] bg-over flex flex-col">
 
 
             <ul class="flex flex-col mt-6">
-                <a href="/"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</li></a>
-                <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
-                <a href="/schedules"> <li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
-                <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
-                <a href="/logout"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+                <a href="/"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</li></a>
+                <a href="/students"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
+                <a href="/schedules"> <li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                <a href="/attendance/mark"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                <a href="/logout"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
             </ul>
         </div>
 
@@ -54,9 +55,11 @@
                 <h1 class="font bold font-serif text-4xl mb-2 text-dark">STUDENT LIST</h1>
             </div>
             <div class=" ml-70 flex  justify-end ">
-                <button class="rounded bg-dark h-8 w-48">
-                    <a href="{{ route('students.create') }}" class="text-center font-serif text-white">Add New Student</a>
-                </button>
+
+                    <a href="{{ route('students.create') }}" class="text-center font-serif text-white">
+                        <button class="rounded bg-dark h-8 w-48">
+                        Add New Student</button></a>
+
             </div>
             @if ( $message = Session::get('success'))
             <div class=" mt-3">

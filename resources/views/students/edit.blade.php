@@ -16,7 +16,8 @@
     <script src="https://cdn.tailwindcss.com"> </script>
     <style>
         .sidebar {
-            width: 16rem;
+            width: 250px;
+
         }
         .content {
             margin-left: 16rem;
@@ -38,18 +39,18 @@
     </header>
 
     <div class="flex h-screen">
-        <div class="sidebar bg-fossil flex shadow-dark shadow-xl flex-col">
+        <div class="sidebar  h-[110vh] bg-over flex  flex-col">
 
             <ul class="flex flex-col mt-6">
-                <a href="/"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</li></a>
-                <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
-                <a href="/schedules"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
-                <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
-                <a href="/logout"> <li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"> <i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+                <a href="/"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</li></a>
+                <a href="/students"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
+                <a href="/schedules"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                <a href="/attendance/mark"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                <a href="/logout"> <li class="px-4 py-5 font-bold text-dark hover:bg-cloud "> <i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
             </ul>
         </div>
 
-    <div class=" flex justify-center items-center h-screen ml-20 w-3/4">
+    <div class=" flex justify-center items-center h-screen ml-20 w-3/4 mt-10">
         <div class=" w-3/4 p-6 shadow-lg bg-dark shadow-fossil rounded-md">
             <h1 class=" text-3xl text-center text-white uppercase block font-bold">Edit Student</h1>
             <hr class="mt-3 text-white">
@@ -158,7 +159,7 @@
             </div>
 
             <div class="h-6">
-                <button type="submit"  class="bg-over text-dark rounded-md font-bold hover:border-over w-full hover:bg-dark hover:text-over text-center h-8 ">Update</button>
+                <button type="submit"  class="bg-over text-dark uppercase rounded-md font-bold hover:border-over w-full hover:bg-dark hover:text-over text-center h-8 ">Update</button>
             </div>
 
         </form>

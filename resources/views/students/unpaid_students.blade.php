@@ -11,7 +11,8 @@
     @vite ('resources/css/app.css')
     <style>
         .sidebar {
-            width: 16rem;
+            width: 250px;
+
         }
         .content {
             margin-left: 16rem;
@@ -31,19 +32,19 @@
     </header>
 
     <div class="flex h-screen">
-        <div class="sidebar bg-fossil shadow-dark shadow-xl flex flex-col">
+        <div class="sidebar  h-[110vh] bg-over border-t-1 border-t-dark flex flex-col">
 
 
             <ul class="flex flex-col mt-6">
-               <a href="/">  <li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>Dashboard </li></a>
-             <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
-               <a href="/schedules"> <li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
-                 <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
-                  <a href="/logout"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+               <a href="/">  <li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-chart-line"></i>Dashboard </li></a>
+             <a href="/students"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
+               <a href="/schedules"> <li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                 <a href="/attendance/mark"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                  <a href="/logout"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
             </ul>
         </div>
 
-        <div class=" flex justify-center items-center h-screen ml-20 w-3/4">
+        <div class=" flex justify-center items-center h-screen ml-20 w-3/4 mt-5">
             <div class=" w-3/4 p-6 shadow-lg bg-dark shadow-fossil rounded-md">
                 <h1 class=" text-2xl text-center block font-bold text-white uppercase">NAMES OF STUDENTS WHO HAVEN'T PAID</h1>
                 <hr class="mt-3 text-white">

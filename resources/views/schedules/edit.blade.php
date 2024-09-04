@@ -11,7 +11,8 @@
     <script src="https://cdn.tailwindcss.com"> </script>
     <style>
         .sidebar {
-            width: 16rem;
+            width: 250px;
+
         }
         .content {
             margin-left: 16rem;
@@ -33,14 +34,14 @@
     </header>
 
     <div class="flex h-screen">
-        <div class="sidebar bg-fossil flex shadow-dark shadow-xl flex-col">
+        <div class="sidebar  h-[110vh] bg-over flex shadow-dark shadow-xl flex-col">
 
             <ul class="flex flex-col mt-6">
-                <a href="/"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>  Dashboard</li></a>
-                <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>   Students</li></a>
-                <a href="/schedules"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
-                <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
-                <a href="/logout"> <li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"> <i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+                <a href="/"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-chart-line"></i>  Dashboard</li></a>
+                <a href="/students"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-user-graduate"></i>   Students</li></a>
+                <a href="/schedules"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                <a href="/attendance/mark"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                <a href="/logout"> <li class="px-4 py-5 font-bold text-dark hover:bg-cloud "> <i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
             </ul>
         </div>
 
@@ -69,19 +70,19 @@
                             <input type="text" id="name" name="name" value="{{ old('name', $schedule->name) }}" class="px-2 py-4 rounded-md h-8 w-auto border-1 border-over" required>
                         </div>
 
-                        <div class="form-group my-5">
+                        <div class="form-group flex gap-3 my-5">
                             <label for="time_in" class="text-white">Time In:</label>
                             <input type="time" id="time_in" name="time_in" value="{{ old('time_in', $schedule->time_in) }}" class="px-2 py-2 rounded-md h-10 w-auto border-1 border-over " required>
                         </div>
 
-                        <div class="form-group my-5">
+                        <div class="form-group flex gap-3 my-5">
                             <label for="time_out" class="text-white">Time Out:</label>
                             <input type="time" id="time_out" name="time_out" value="{{ old('time_out', $schedule->time_out) }}" class="px-2 py-2 rounded-md h-10 w-auto border-1 border-over" required>
                         </div>
 
 
                         <div class=" mt-5  ">
-                            <button type="submit" class="uppercase rounded-md w-full py-1 bg-over hover:bg-dark text-dark hover:text-over font bold">Update Schedule</button>
+                            <button type="submit" class="uppercase font-bold rounded-md w-full py-1 bg-over hover:bg-dark text-dark hover:text-over font bold">Update Schedule</button>
                         </div>
 
                     </form>

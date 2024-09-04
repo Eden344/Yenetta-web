@@ -15,7 +15,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         .sidebar {
-            width: 16rem;
+            width: 250px;
+
         }
         .content {
             margin-left: 16rem;
@@ -35,14 +36,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </header>
 
     <div class="flex h-screen">
-        <div class="sidebar bg-fossil flex shadow-dark shadow-xl flex-col">
+        <div class="sidebar  h-[110vh] bg-over flex shadow-dark shadow-xl flex-col">
 
             <ul class="flex flex-col mt-6">
-                <a href="/"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</a></li>
-                 <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
-                <a href="/schedules"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
-                 <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
-                <a href="/logout"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+                <a href="/"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</a></li>
+                 <a href="/students"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
+                <a href="/schedules"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                 <a href="/attendance/mark"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                <a href="/logout"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
             </ul>
         </div>
 
@@ -53,9 +54,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         </div>
         <div class=" Schedule Detail ml-70 flex  justify-end ">
-            <button class="rounded bg-dark h-8 w-48">
-                <a href="{{ route('schedules.create') }}" class="text-center font-serif text-white">Create Schedule</a>
-            </button>
+
+                <a href="{{ route('schedules.create') }}" class="text-center font-serif text-white"><button class="rounded bg-dark h-8 w-48">
+                    Create Schedule  </button></a>
+
 
         </div>
 

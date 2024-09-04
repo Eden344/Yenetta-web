@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"> </script>
     <style>
         .sidebar {
-            width: 16rem;
+            width: 250px;
         }
         .content {
             margin-left: 16rem;
@@ -18,7 +18,7 @@
 </head>
 <body class="bg-white">
 
-    <header class="h-16 bg-dark w-full">
+    <header class="h-16 bg-dark w-full ">
         <div class="justify ml-4">
 
             <img src="/img/logo.png" alt="Your Image" class="h-16 w-24">
@@ -27,14 +27,14 @@
     </header>
 
     <div class="flex h-screen">
-        <div class="sidebar bg-fossil shadow-dark shadow-xl flex flex-col">
+        <div class="sidebar  h-[110vh] bg-over shadow-dark shadow-xl flex flex-col">
 
             <ul class="flex flex-col mt-6">
-                <a href="/"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</a></li>
-                <a href="/students"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a></li>
-                <a href="/schedules"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a></li>
-                <a href="/attendance/mark"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a></li>
-                <a href="/logout"><li class="px-4 py-5 text-white hover:bg-cloud hover:text-fossil"><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
+                <a href="/"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-chart-line"></i>Dashboard</li></a>
+                <a href="/students"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-user-graduate"></i>Students</li></a>
+                <a href="/schedules"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-calendar-days"></i>Schedule</li></a>
+                <a href="/attendance/mark"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-clipboard-user"></i>Attendance</li></a>
+                <a href="/logout"><li class="px-4 py-5 font-bold text-dark hover:bg-cloud "><i class="fa-solid px-3 fa-right-from-bracket"></i>Logout</li></a>
             </ul>
         </div>
 
