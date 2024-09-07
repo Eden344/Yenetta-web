@@ -33,12 +33,19 @@ class studentController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+    
 
        $data= $request->validate([
 
             'firstname' => 'required',
             'middlename' => 'nullable',
             'lastname' => 'required',
+            'parent_first_name' => 'required',
+            'parent_last_name' => 'required',
+            'parent_email' => 'required|email',
+            'email' => 'email|unique:information|nullable',
+            'phonenumber1' => 'required',
+            'phonenumber2' => 'required',
             'parent_first_name' => 'required',
             'parent_last_name' => 'required',
             'parent_email' => 'required|email',

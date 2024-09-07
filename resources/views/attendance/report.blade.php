@@ -47,6 +47,9 @@
 
             <div>
                 <h1 class="font bold font-serif text-4xl mb-4 text-dark uppercase">Attendance Report</h1>
+                @if (session()->has('success'))
+                <div>{{session('success')}}</div>
+                @endif
             </div>
 
         <table class="w-full mt-4 ">

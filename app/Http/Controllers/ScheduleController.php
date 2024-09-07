@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -30,7 +30,6 @@ class ScheduleController extends Controller
         Schedule::create($request->all());
 
         return redirect()->route('schedules.index')->with('success', 'Schedule created successfully.');
-
     }
 
     public function edit($id)
@@ -43,8 +42,8 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'time_in' => 'required|date_format:H:i:s',
-            'time_out' => 'required|date_format:H:i:s',
+            'time_in' => 'required',
+            'time_out' => 'required',
         ]);
 
         $schedule = Schedule::findOrFail($id);

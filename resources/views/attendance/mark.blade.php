@@ -38,46 +38,68 @@
             </ul>
         </div>
 
-
+        
         <div class="flex flex-col w-full ml-5 mt-10 mr-0 space-y-10 ">
-            <div>
-                <h1 class="font bold font-serif text-4xl mb-4 text-dark">Mark Attendance</h1>
-            </div>
-
-            <form action="" method="get">
-                
-            </form>
-            <form action="{{ route('attendance.mark') }}"  method="POST">
+            <h1 class="font bold font-serif text-4xl mb-4 text-dark">Mark Attendance</h1>
+            <form action="/show-filtered-attendance" method="GET">
                 @csrf
-                <table class="w-full mt-4">
-                    <thead class="bg-dash border-b-2 ">
-                        <tr class="w-12 p-3">
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left">First Name</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left">Middle Name</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left">Last Name</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left">Date</th>
-                            <th class="p-3 text-sm font-semibold tracking-wide text-left">Present</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($students as $student)
+                <select name="schedule_id" id="schedule_id">
+                @if(isset($schedule_id))
+                    <option value="{{$schedule_id}}">{{$current_schedule->name}}</option>
+                @endif
+                @foreach ($schedules as $schedule)
+                    @if(isset($schedule_id))
+                        @unless ($schedule_id == $schedule->id)    
+                            <option value="{{$schedule->id}}">{{$schedule->name}}</option>
+                        @endunless
+                    @else
+                        <option value="{{$schedule->id}}">{{$schedule->name}}</option>
+                        @endif     
+                        @endforeach
+                    </select>
+                    <button type="submit">Filter</button>
+                </form>    
+                @if ($students->count() != 0)
+                <form action="{{ route('attendance.mark') }}"  method="POST">
+                    @csrf
+                    <table class="w-full mt-4">
+                        <thead class="bg-dash border-b-2 ">
+                            <tr class="w-12 p-3">
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left">First Name</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left">Middle Name</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left">Last Name</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left">Date</th>
+                                <th class="p-3 text-sm font-semibold tracking-wide text-left">Present</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Load existing attendance for this student if available -->
+                            @foreach($students as $student)
+                            @php
+                                $attendance = $student->attendances()->where('date', today()->toDateString())->first();
+                            @endphp
                             <tr class="p-3 text-sm text-gray-700">
                                 <td class="p-3 text-sm text-gray-700">{{ $student->firstname }}</td>
                                 <td class="p-3 text-sm text-gray-700">{{ $student->middlename }}</td>
                                 <td class="p-3 text-sm text-gray-700">{{ $student->lastname }}</td>
-                                <td class="p-3 text-sm text-gray-700"><input type="date" name="attendance[{{ $student->id }}][date]" value="{{ today()->toDateString() }}"></td>
-                                <td class="p-3 text-sm text-gray-700"><input type="checkbox" name="attendance[{{ $student->id }}][present]" value="1"></td>
+                                <td class="p-3 text-sm text-gray-700">
+                                    <input type="date" name="attendance[{{ $student->id }}][date]" value="{{ today()->toDateString() }}">
+                                </td>
+                                <td class="p-3 text-sm text-gray-700">
+                                    <input type="checkbox" name="attendance[{{ $student->id }}][present]" value="1" {{ $attendance && $attendance->present ? 'checked' : '' }} ">
+                                </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="m-6">
-                    <button type="submit" class="bg-dark rounded-md text-over text-center font-bold border-2 border-dark
-                     hover:bg-over hover:text-dark w-16 h-9  hover:border-dark">Submit</button>
-                </div>
-
-            </form>
-
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="m-6">
+                        <button type="submit" class="bg-dark rounded-md text-over text-center font-bold border-2 border-dark
+                        hover:bg-over hover:text-dark w-16 h-9  hover:border-dark">Submit</button>
+                    </div>
+                </form>
+            @else
+            <div>No students are in this class.</div>
+            @endif      
         </div>
     </div>
 

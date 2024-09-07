@@ -41,13 +41,14 @@ Route::patch('/students/{id}', [studentController::class, 'update'])->name('stud
 // Delete a specific student from the database
 Route::delete('/students/{id}', [studentController::class, 'destroy'])->name('students.destroy');
 
+// Schedule related routes.
 Route::resource('/schedules', ScheduleController::class);
 Route::get('/schedules/{id}/students', [ScheduleController::class, 'showStudentsBySchedule'])->name('schedules.students');
-
+// Attendance Related Routes
 Route::get('/attendance/mark', [AttendanceController::class, 'markAttendanceForm'])->name('attendance.mark_form');
 Route::get('/show-filtered-attendance', [AttendanceController::class, 'filtered_attendance']);
 Route::post('/attendance/mark', [AttendanceController::class, 'markAttendance'])->name('attendance.mark');
-Route::get('/attendance/report', [AttendanceController::class, 'attendanceReport'])->name('attendance.report');
+Route::get('/attendance/report', [AttendanceController::class, 'showAttendanceReport'])->name('attendance.report');
 
 
 Route::post('/attendance/submit', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');

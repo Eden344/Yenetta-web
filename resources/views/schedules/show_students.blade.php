@@ -60,7 +60,6 @@
         <div class="mt-10">
                 <h2 class="font-serif font-bold uppercase text-dark text-3xl">{{ $schedule->name }}</h2>
         </div>
-
         <!-- Display List of Students in This Schedule -->
         <span class="p-1 mx-1 text-xs font-medium uppercase tracking-wider text-white bg-parakeet rounded-lg bg-opacity-50  ">
             <h3 class="font-serif font-bold">Students Enrolled in This Schedule</h3>
@@ -91,7 +90,7 @@
                     <td class="p-3 text-sm text-gray-700">{{ $student->middlename }}</td>
                     <td class="p-3 text-sm text-gray-700">{{ $student->lastname }}</td>
                     <td class="p-3 text-sm text-gray-700">{{ $student->email }}</td>
-                    <td class="p-3 text-sm text-gray-700">{{ $student->phonenumber }}</td>
+                    <td class="p-3 text-sm text-gray-700">{{ $student->phonenumber1 }}</td>
                     <td class="p-3 text-sm text-gray-700">{{ $student->gender }}</td>
                         <td class="p-3 text-sm text-gray-700">{{ $student->age }}</td>
                         <td class="p-3 text-sm text-gray-700">{{ $schedule->time_in }}</td>

@@ -35,9 +35,11 @@ class AttendanceController extends Controller
 
         // Set the attendance status
         if ($present) {
-            $attendance->time_in = now();
+            $attendance->present = true;
+            $attendance->time_in = $attendance->time_in ?? now();
             $attendance->time_out = now();
         } else {
+            $attendance->present = false;
             $attendance->time_in = null;
             $attendance->time_out = null;
         }
@@ -51,32 +53,27 @@ class AttendanceController extends Controller
 }
 
 
+public function showAttendanceReport()
+{
+    $students = Information::all(); // Fetch all students
+    $dates = Attendance::select('date')->distinct()->orderBy('date', 'asc')->get()->pluck('date'); // Get unique attendance dates
+    
+    // Initialize an array to store attendance status per student per date
+    $attendanceStatus = [];
 
-    // Generate attendance report
-    public function attendanceReport()
-    {
-        // Fetch all students along with their attendance records
-        $students = Information::with('attendances')->get();
-        $dates = Attendance::select('date')->distinct()->orderBy('date')->pluck('date');
-
-        // Prepare an array to hold the attendance status for each student on each date
-        $attendanceStatus = [];
-
-        foreach ($students as $student) {
-            foreach ($dates as $date) {
-                $attendance = $student->attendances->firstWhere('date', $date);
-
-                // Check if the attendance record exists and whether the student was present
-                if ($attendance && $attendance->time_in && $attendance->time_out) {
-                    $attendanceStatus[$student->id][$date] = '✔️';
-                } else {
-                    $attendanceStatus[$student->id][$date] = '❌';
-                }
-            }
+    foreach ($students as $student) {
+        foreach ($dates as $date) {
+            // Get attendance for the student on a specific date
+            $attendance = Attendance::where('student_id', $student->id)
+                                    ->where('date', $date)
+                                    ->first();
+            // Store the attendance status ('Present' or 'Absent')
+            $attendanceStatus[$student->id][$date] = $attendance ? ($attendance->present ? '✔️' : '❌') : 'Not Marked';
         }
-
-        return view('attendance.report', compact('students', 'dates', 'attendanceStatus'));
     }
+
+    return view('attendance.report', compact('students', 'dates', 'attendanceStatus'));
+}
 
 
 
@@ -114,6 +111,9 @@ public function filtered_attendance(Request $request){
 
 public function markAttendanceForm() {
     $students = Information::all();
+    $default_schedule_id = Schedule::count();
+    $schedules = Schedule::all(['id','name', 'time_in', 'time_out']); // Fetch necessary fields
+    return view('attendance.mark', compact('students', 'schedules', 'default_schedule_id'));
     $default_schedule_id = Schedule::count();
     $schedules = Schedule::all(['id','name', 'time_in', 'time_out']); // Fetch necessary fields
     return view('attendance.mark', compact('students', 'schedules', 'default_schedule_id'));
