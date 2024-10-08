@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('parent_last_name');
             $table->string('parent_email');
             $table->string('email')->unique();
-            $table->integer('phonenumber1')->nullable();
-            $table->integer('phonenumber2')->nullable();
+            $table->string('phonenumber1')->nullable();
+            $table->string('phonenumber2')->nullable();
             $table->string('gender');
             $table->integer('age');
             $table->string('school');

@@ -32,35 +32,30 @@ class studentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-    
 
        $data= $request->validate([
-
-            'firstname' => 'required',
-            'middlename' => 'nullable',
-            'lastname' => 'required',
-            'parent_first_name' => 'required',
-            'parent_last_name' => 'required',
+            'firstname' => 'required|string',
+            'middlename' => 'nullable|string',
+            'lastname' => 'required|string',
+            'parent_first_name' => 'required|string',
+            'parent_last_name' => 'required|string',
             'parent_email' => 'required|email',
             'email' => 'email|unique:information|nullable',
-            'phonenumber1' => 'required',
-            'phonenumber2' => 'required',
-            'parent_first_name' => 'required',
-            'parent_last_name' => 'required',
+            'phonenumber1' => 'required|string',
+            'phonenumber2' => 'required|string',
+            'parent_first_name' => 'required|string',
+            'parent_last_name' => 'required|string',
             'parent_email' => 'required|email',
             'email' => 'email|unique:information|nullable',
-            'phonenumber1' => 'required',
-            'phonenumber2' => 'required',
             'gender' => 'required',
             'age' => 'required|integer',
-            'school' => 'required',
-            'address' => 'required',
+            'school' => 'required|string',
+            'address' => 'required|string',
             'schedule_id' => 'required|exists:schedules,id',
-            'fee' => 'nullable'
+            'fee' => 'nullable|integer'
         ]);
 
-        $newproduct = information::create($data);
+        information::create($data);
         return redirect()->route('students.index')
                          ->with('success', 'Student created successfully.');
     }
