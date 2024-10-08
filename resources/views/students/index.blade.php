@@ -68,7 +68,7 @@
                 </span>
             </div>
         @endif
-
+            @if(count($students) != 0)
         <table class="w-full mt-4">
             <thead class="bg-gray-50 border-b-2 border-gray-200">
                 <tr class="w-12 p-3">
@@ -112,6 +112,10 @@
                 @endforeach
             </tbody>
         </table>
+
+        @else 
+        <div>No Students are registered. Add a new student first.</div>
+        @endif
     </div>
 
         </div>

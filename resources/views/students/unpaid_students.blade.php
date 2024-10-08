@@ -52,9 +52,9 @@
 
                     <ul class="m-4">
                         @foreach ($students as $student)
-                        @if (is_null($student->fee) || (int)$student->fee === 0)
-                            <li class="text-white font bold uppercase text-xl text-center">{{ $student->firstname . " " . $student->middlename . " " . $student->lastname.":-".$student->phonenumber1 }}</li>
-                        @endif
+                            @if (is_null($student->fee) || (int)$student->fee === 0)
+                                <li class="text-white font bold uppercase text-xl text-center">{{ $student->firstname . " " . $student->middlename . " " . $student->lastname . " :- " . $student->phonenumber1 }}</li>
+                            @endif
                         @endforeach
 
                     </ul>
